@@ -29,6 +29,8 @@
       "@infra/*": ["./src/infra/*"],
       "@common/*": ["./src/common/*"],
       "@config/*": ["./src/config/*"],
+      "@dto/*": ["./src/dto/*"],
+      "@shared/*": ["./src/shared/*"],
 
       "@guards/*": ["./src/common/guards/*"]
     }

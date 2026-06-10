@@ -1,21 +1,23 @@
 import { PrismaService } from '@/src/infra/prisma/prisma.service';
+import { PublicUser } from '@dto/user.dto';
 import { Injectable } from '@nestjs/common';
 
 @Injectable()
 export class UserService {
   constructor(private prisma: PrismaService) {}
 
-  createUser(email: string, name: string, passwordHash: string) {
+  createUser(email: PublicUser['email'], name: PublicUser['name'], passwordHash: string, theme: PublicUser['theme']) {
     return this.prisma.user.create({
       data: {
         email,
         name,
         passwordHash,
+        theme,
       },
     });
   }
 
-  getByEmail(email: string) {
+  getByEmail(email: PublicUser['email']) {
     return this.prisma.user.findUnique({
       where: { email },
     });
@@ -27,7 +29,7 @@ export class UserService {
     });
   }
 
-  async updateTheme(userId: string, theme: 'light' | 'dark') {
+  async updateTheme(userId: string, theme: PublicUser['theme']) {
     return this.prisma.user.update({
       where: { id: userId },
       data: { theme },
