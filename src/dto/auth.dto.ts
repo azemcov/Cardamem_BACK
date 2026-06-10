@@ -1,5 +1,5 @@
+import { IsEmailRu, IsInRu, IsNotEmptyRu, IsStringRu, MinLengthRu } from '@/src/common/validation/class-validator-ru';
 import { PublicUser } from '@dto/user.dto';
-import { IsEmailRu, IsInRu, IsNotEmptyRu, IsStringRu, MinLengthRu } from '@shared/validation/class-validator-ru';
 
 export class RegisterDto {
   @IsEmailRu()

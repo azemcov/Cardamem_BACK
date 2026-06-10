@@ -1,3 +1,4 @@
+import { HttpExceptionFilter } from '@filters/http-exception.filter';
 import { HttpException, HttpStatus, ValidationPipe } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { NestFactory } from '@nestjs/core';
@@ -17,6 +18,8 @@ async function bootstrap() {
     }
     return result;
   }
+
+  app.useGlobalFilters(new HttpExceptionFilter());
 
   app.enableCors({
     origin: configService.get<string>('FRONTEND_URL'),

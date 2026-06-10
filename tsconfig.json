@@ -32,6 +32,7 @@
       "@dto/*": ["./src/dto/*"],
       "@shared/*": ["./src/shared/*"],
 
+      "@filters/*": ["./src/common/filters/*"],
       "@guards/*": ["./src/common/guards/*"]
     }
   }
