@@ -17,7 +17,7 @@ export class AuthService {
     const existing = await this.userService.getByEmail(email);
 
     if (existing) {
-      throw new HttpException('User already exists', HttpStatus.CONFLICT);
+      throw new HttpException('Пользователь с таким email уже существует', HttpStatus.CONFLICT);
     }
 
     const hash = await bcrypt.hash(password, 10);
@@ -31,15 +31,15 @@ export class AuthService {
     const user = await this.userService.getByEmail(email);
 
     if (!user) {
-      throw new HttpException('User not found', HttpStatus.NOT_FOUND);
+      throw new HttpException('Пользователь не найден', HttpStatus.NOT_FOUND);
     }
     if (!user.passwordHash) {
-      throw new HttpException('Password login not available', HttpStatus.NOT_FOUND);
+      throw new HttpException('Пароль не найден', HttpStatus.NOT_FOUND);
     }
 
     const isValid = await bcrypt.compare(password, user.passwordHash);
     if (!isValid) {
-      throw new HttpException('Wrong password', HttpStatus.UNAUTHORIZED);
+      throw new HttpException('Неверный пароль', HttpStatus.UNAUTHORIZED);
     }
 
     return this.signToken(user.id, user.email);

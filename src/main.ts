@@ -32,7 +32,10 @@ async function bootstrap() {
       whitelist: true,
       forbidNonWhitelisted: true,
       exceptionFactory: (errors) => {
-        return new HttpException(formatErrors(errors), HttpStatus.BAD_REQUEST);
+        return new HttpException(
+          { message: 'Ошибка валидации', code: null, fields: formatErrors(errors) },
+          HttpStatus.BAD_REQUEST,
+        );
       },
     }),
   );
